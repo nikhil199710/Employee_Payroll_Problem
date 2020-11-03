@@ -1,7 +1,13 @@
-/*UC9-RenameAlter*/
-
-Exec sp_rename 'employee_payroll.Salary','Basic_pay', 'column';
-alter table employee_payroll add Deductions float;
-alter table employee_payroll add Taxable_Pay float;
-alter table employee_payroll add Income_Tax float;
-alter table employee_payroll add Net_Pay float;
+/* Invoking the payroll services database */
+use payroll_services;
+/* Retrieving all the records from the employee payroll table */
+select * from employee_payroll;
+/* Adding the columns attribute for payroll of employee like
+rename - salary as basic pay and add deductions, taxable pay, 
+income tax and net pay ad attributes for payroll
+ to the employee payroll table */
+alter table employee_payroll
+add deductions float, taxable_pay float, 
+income_tax float, net_pay float;
+-- Renaming salary as basic_pay
+EXEC sp_rename 'employee_payroll.SALARY', 'basic_pay', 'COLUMN';

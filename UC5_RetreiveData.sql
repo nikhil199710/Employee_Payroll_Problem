@@ -1,5 +1,7 @@
-  /*UC5-Getdata*/
-  select Salary from employee_payroll where EmployeeName='nikhil';
-  select * from employee_payroll where startDate between 
-  CAST('2008-1-8' as Date) and GETDATE();
-  
+use payroll_services;
+/* Retrieving only the salary after executing a query for a particular employee*/
+select EMPNAME,SALARY from employee_payroll where EMPNAME = 'nikhil';
+/* Retrieving only the salary after executing a query for date between a specific date in past
+ and today's date*/
+select EMPNAME,SALARY from employee_payroll 
+where STARTDATE between CAST('2018-01-01' as date) and CAST(getdate() as date);

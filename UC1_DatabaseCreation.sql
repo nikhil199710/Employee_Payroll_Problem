@@ -1,3 +1,3 @@
-/*UC1_Create Database*/
-create database payroll_service;
-use payroll_service;
+--/*UC1_Create Database*/
+create database payroll_services;
+-use payroll_services;
