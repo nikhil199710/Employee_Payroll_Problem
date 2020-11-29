@@ -1,13 +1,12 @@
-/* Invoking the payroll services database */
-use payroll_services;
-/* Retrieving all the records from the employee payroll table */
+
+/*UC 9:
+Added columns of basic pay, deductions, taxable pay, income tax and net pay*/
+use payroll_service;
+/*Renaming the salary column to basicPay*/
+EXEC sp_RENAME 'employee_payroll.Salary' , 'BasicPay', 'COLUMN';
+/*Altering the table*/
+alter table employee_payroll add Deductions decimal;
+alter table employee_payroll add TaxablePay decimal;
+alter table employee_payroll add IncomeTax decimal;
+alter table employee_payroll add NetPay decimal;
 select * from employee_payroll;
-/* Adding the columns attribute for payroll of employee like
-rename - salary as basic pay and add deductions, taxable pay, 
-income tax and net pay ad attributes for payroll
- to the employee payroll table */
-alter table employee_payroll
-add deductions float, taxable_pay float, 
-income_tax float, net_pay float;
--- Renaming salary as basic_pay
-EXEC sp_rename 'employee_payroll.SALARY', 'basic_pay', 'COLUMN';
