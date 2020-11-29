@@ -1,7 +1,4 @@
-use payroll_services;
-/* Retrieving only the salary after executing a query for a particular employee*/
-select EMPNAME,SALARY from employee_payroll where EMPNAME = 'nikhil';
-/* Retrieving only the salary after executing a query for date between a specific date in past
- and today's date*/
-select EMPNAME,SALARY from employee_payroll 
-where STARTDATE between CAST('2018-01-01' as date) and CAST(getdate() as date);
+/*Retrieving data with a given condition*/
+select Salary from employee_payroll where EmpName='Nikhil';
+/*Retrieving data with a given condition*/
+select * from employee_payroll where StartDate between cast('2020-01-01' as date) and cast(getdate() as date);
