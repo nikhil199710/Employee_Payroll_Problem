@@ -1,18 +1,15 @@
-/* Invoking the payroll services database */
-use payroll_services;
-/* UC4 -- Retrieving all the records from the employee payroll table */
-select emp.employee_id, emp.employee_name, emp.start_date, emp.gender, emp.phoneNumber, emp.address, 
-dept.department, dept.basic_pay, pay.deductions, pay.taxable_pay, pay.income_tax, pay.net_pay
- from employee_payroll emp, employee_department dept, payroll pay
- where emp.employee_id = dept.employee_id and dept.basic_pay = pay.basic_pay;
- /* UC5 -- Retrieving all the records from the employee payroll table for a particular employee*/
-select emp.employee_id, emp.employee_name, emp.start_date, emp.gender, emp.phoneNumber, emp.address, 
-dept.department, dept.basic_pay, pay.deductions, pay.taxable_pay, pay.income_tax, pay.net_pay
- from employee_payroll emp, employee_department dept, payroll pay
- where emp.employee_id = dept.employee_id and dept.basic_pay = pay.basic_pay and emp.employee_name = 'Terissa';
- /* UC5 -- Retrieving all the records from the employee payroll table for a employee joining date between a time frame*/
-select emp.employee_id, emp.employee_name, emp.start_date, emp.gender, emp.phoneNumber, emp.address, 
-dept.department, dept.basic_pay, pay.deductions, pay.taxable_pay, pay.income_tax, pay.net_pay
- from employee_payroll emp, employee_department dept, payroll pay
- where emp.employee_id = dept.employee_id and dept.basic_pay = pay.basic_pay and 
- emp.start_date between CAST('2018-01-01' as date) and CAST(getdate() as date);
+/*UC 12:
+Retrieve queries with new table strcuture*/
+use payroll_service;
+
+/*UC 4*/
+select EmpID,BasicPay,Deductions,IncomeTax,TaxablePay,NetPay from payroll;
+
+/*UC 5*/
+select e.EmpName ,p.BasicPay,p.Deductions,p.IncomeTax,p.TaxablePay,NetPay from employee e inner join payroll p on e.EmpId=p.EmpId;
+
+/*UC 7*/
+select e.Gender ,min(p.BasicPay- p.Deductions- p.TaxablePay)as MinNetPay from payroll p inner join Employee e on e.EmpId=p.EmpId group by e.Gender;
+select e.Gender ,max(p.BasicPay- p.Deductions- p.TaxablePay)as MaxNetPay from payroll p inner join Employee e on e.EmpId=p.EmpId group by e.Gender;
+select e.Gender ,sum(p.BasicPay- p.Deductions- p.TaxablePay)as SumNetPay from payroll p inner join Employee e on e.EmpId=p.EmpId group by e.Gender;
+select e.Gender ,avg(p.BasicPay- p.Deductions- p.TaxablePay)as AvgNetPay from payroll p inner join Employee e on e.EmpId=p.EmpId group by e.Gender;
