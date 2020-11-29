@@ -1,7 +1,10 @@
-/*UC2 table created*/
-use payroll_services;
+/* UC 2 : 
+Employee payroll table is created*/
+use payroll_service;
+/* Creating a table */
 create table employee_payroll
-( EMPID int not null identity(1000,1) primary key,
-EMPNAME varchar(150) not null,
-SALARY float not null,
-STARTDATE date not null);
+(EmpID int not null identity(1,1) primary key,
+EmpName varchar(150) not null,
+Salary float not null,
+StartDate date not null
+);
