@@ -1,5 +1,10 @@
-/*Denoting the Sum Of the salary Count of employee, Minimum Salary And Maximum salary
-from the Employee Payroll table grouping by Gender for females  */
-select SUM(SALARY) as 'Sum_Salary', MIN(SALARY) as 'Minimum_Salary', 
-MAX(SALARY) as 'Maximum_Salary', COUNT(SALARY) as 'Number_Of_Females',
-AVG(SALARY) as 'Average_Salary' from employee_payroll where gender = 'F' group by gender;
+/*Sum of salary of male and female employees*/
+select Gender,sum(salary) as SalarySum from employee_payroll where Gender='M' or Gender='F' group by Gender;
+/*Average salary of male and female employees*/
+select Gender,avg(salary) as AvgSalary from employee_payroll where Gender='M' or Gender='F' group by Gender;
+/*Minimum salary*/
+select Gender,min(salary) as MinSalary from employee_payroll where Gender='M' or Gender='F' group by Gender;
+/*Maximum salary*/
+select Gender,max(salary) as MaxSalary from employee_payroll where Gender='M' or Gender='F' group by Gender;
+/*Employee count*/
+select Gender,count(salary) as EmpCount from employee_payroll where Gender='M' or Gender='F' group by Gender;
