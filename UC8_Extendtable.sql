@@ -1,8 +1,7 @@
-use payroll_services;
-/* Retrieving all the records from the employee payroll table */
-select * from employee_payroll;
-/* Adding the columns for address, phone number and department of employee 
- to the employee payroll table */
-alter table employee_payroll
-add phoneNumber bigint, department varchar(50), 
-address varchar(50) not null default 'Mumbai';
+/*UC 8:
+Added column of phone number, address and department*/
+use payroll_service;
+/*Altering the table*/
+alter table employee_payroll add PhnNo varchar(250);
+alter table employee_payroll add Address varchar(250) default 'Homeless';
+alter table employee_payroll add Department varchar(150) not null default 'Null';
